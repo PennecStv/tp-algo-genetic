@@ -9,6 +9,24 @@
 
 ## Compte-Rendu
 
+## Algorithme génétique et méthodes utilisées
+
+Nous utilisons un algorithme génétique pour résoudre le problème du voyageur de commerce (TSP).  
+Le principe est de générer plusieurs solutions  et de les améliorer progressivement au fil des générations.
+
+Chaque solution représente un ordre de visite des villes. L’algorithme sélectionne les meilleures solutions et les combine pour créer de nouvelles solutions.
+
+Plusieurs méthodes sont utilisées :
+
+- **Nearest Neighbor**: utilisée pour créer des solutions initiales assez bonnes rapidement en allant toujours vers la ville la plus proche.
+- **Sélection par tournoi** : permet de choisir les meilleures solutions pour la reproduction tout en gardant un peu d’aléatoire.
+- **Order Crossover** : utilisé pour combiner deux solutions et créer un nouvel individu tout en gardant un ordre valide des villes.
+- **Mutation** : modifie légèrement une solution afin d’explorer de nouvelles possibilités.
+- **2-opt** : méthode d’amélioration locale qui réduit la distance du tour en inversant certaines parties du chemin.
+
+Ces méthodes permettent d’explorer différentes solutions et d’améliorer progressivement la distance totale du tour.
+
+
 ### Paramètrage globale par défaut
 
 * `time_budget=60`:
