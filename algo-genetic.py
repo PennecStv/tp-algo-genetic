@@ -340,6 +340,9 @@ def genetic_algorithm(cities, time_budget=60, pop_size=150, mutation_rate=0.15,
     n_elite = max(1, int(pop_size * elite_ratio))
     t_start = time.time()
     generation = 0
+    
+    no_improve_count = 0
+    MAX_NO_IMPROVE = 100  # générations sans amélioration
 
     # --- Boucle génétique ---
     while time.time() - t_start < time_budget:
@@ -373,7 +376,13 @@ def genetic_algorithm(cities, time_budget=60, pop_size=150, mutation_rate=0.15,
         if fitnesses[gen_best_idx] < best_dist:
             best_dist = fitnesses[gen_best_idx]
             best_tour = population[gen_best_idx][:]
-
+            no_improve_count = 0
+        else:
+            no_improve_count += 1
+            
+        if no_improve_count >= MAX_NO_IMPROVE:
+            break
+        
         if generation % 20 == 0:
             elapsed = time.time() - t_start
             print(f"  Gen {generation:4d} | Meilleure dist : {best_dist:.2f} km | "
@@ -410,6 +419,7 @@ def run_instance(instance_id, time_budget=60, **ga_kwargs):
     best_tour, best_dist = genetic_algorithm(cities, time_budget=time_budget, **ga_kwargs)
 
     print(f"  Soumission de la solution (distance locale : {best_dist:.2f} km)...")
+    print(f"  Tour soumis : {best_tour[:10]}... (total {len(best_tour)} villes)")
     result = submit_solution(instance_id, best_tour)
     if result:
         print(f"  Statut      : {result.get('status')}")
