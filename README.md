@@ -11,11 +11,23 @@
 
 ### Paramètrage globale par défaut
 
-* time_budget=60
-* pop_size=150
-* mutation_rate=0.15
-* elite_ratio=0.1
-* tournament_k=5
+* `time_budget=60`:
+Temps maximal (en secondes) alloué à l'algorithme pour trouver la solution. L'algorithme s'arrête après 60 secondes, même s'il pourrait continuer.
+
+* `pop_size=150`:
+Nombre d'individus (tours) maintenus dans la population à chaque génération. Plus grand = plus d'exploration mais plus lent par génération.
+
+* `mutation_rate=0.15`:
+Probabilité (15%) qu'un enfant subisse une mutation. Plus élevé = plus d'exploration mais moins de stabilité des bonnes solutions.
+
+* `elite_ratio=0.1`:
+Fraction (10%) des meilleurs individus conservés directement sans modification dans la génération suivante. Garantit que les bonnes solutions ne disparaissent pas.
+
+* `tournament_k=5`:
+Nombre d'individus sélectionnés aléatoirement dans le tournoi de sélection. Plus grand = sélection plus stricte (favorise les meilleurs), plus petit = plus de diversité.
+
+* `MAX_NO_IMPROVE=3000`:
+Nombre maximum de générations sans amélioration avant d'arrêter l'algorithme. Évite de perdre du time_budget si on stagne (convergence prématurée).
 
 ### Tiny - Tour de France des régions
 
@@ -52,7 +64,28 @@ Le fait d’obtenir systématiquement le même résultat montre une bonne stabil
 
 ### Medium - Tournée des préfectures
 
+Score obtenu : 6491.49
 
+Avec le paramètrage suivant :
+
+* time_budget: 120
+* pop_size = 100
+
+Pour celui-là, il fallait trouver un bon équilibre entre le ratio exploitation et exploration.
+
+Gen   20 | Meilleure dist : 6537.00 km | Temps écoulé : 1.3s
+Gen   40 | Meilleure dist : 6517.63 km | Temps écoulé : 2.6s
+Gen   60 | Meilleure dist : 6517.63 km | Temps écoulé : 3.9s
+Gen   80 | Meilleure dist : 6509.54 km | Temps écoulé : 5.1s
+...
+Gen  320 | Meilleure dist : 6509.54 km | Temps écoulé : 19.7s
+Gen  340 | Meilleure dist : 6491.61 km | Temps écoulé : 20.9s
+
+On observe alors que la solution optimale a été trouvé après 20 secondes pour un génération d'une population de 340 individus.
+
+En essayant d'augmenter l'exploitation avec un `pop_size=200`, j'ai réussi à avoir l'optimum plus rapidement :
+Gen   20 | Meilleure dist : 6539.59 km | Temps �coul� : 2.4s
+Gen   40 | Meilleure dist : 6491.61 km | Temps �coul� : 4.8s
 
 ### Hard - Road Trip improvisé
 Score obtenu : 5904.89
@@ -76,7 +109,27 @@ Cette instance étant plus complexe (100 villes) l’algorithme nécessite plus 
 
 ### Extreme - Le facteur est fou
 
+Score obtenu : 6491.49
 
+Avec le paramètrage suivant :
+
+* time_budget: 20
+* pop_size = 80
+
+En phase d'essai, avec le paramètrage suivant pour un ratio d'exploitation et d'exploration pas assez élevé :
+- "time_budget": 10
+- "pop_size": 30
+
+Nous avons obtenu :
+
+  Gen  100 | Meilleure dist : 8260.61 km | Temps �coul� : 8.5s
+
+Cela montre une exploitation très rapide avec pas assez d'exploration. On augmente alors le `pop_size` à 80 pour avoir une meilleure qualité, sans être trop coûteux sachant que cette instance possède 200 villes.
+
+Gen   20 | Meilleure dist : 8204.85 km | Temps �coul� : 4.7s
+Gen   40 | Meilleure dist : 8202.83 km | Temps �coul� : 9.3s
+Gen   60 | Meilleure dist : 8202.83 km | Temps �coul� : 13.8s
+Gen   80 | Meilleure dist : 8169.03 km | Temps �coul� : 18.4s
 
 ### Nightmare - Cauchemar du livreur
 Score obtenu : 12950.63
@@ -119,7 +172,14 @@ Le processus génétique (croisement, mutation et sélection) permet néanmoins 
 
 ### Double spirale - La galaxie de Hubble (1 400 villes)
 
+Score obtenu : 1944.32
 
+* time_budget: 300
+* pop_size: 80
+
+Nous avons commencé nos essais avec un paramètre de `pop_size` allant de 10 à 100, où notre score s'améliorer au fur et à mesure que nous augmentant `pop_size` allant de 200 à 1940.
+
+Cependant, nous avons constaté une saturation où on passant `pop_size` de 80 à 100, l'algorithme fut plus couteuse et a mis 300 secondes (du coup le `time_budget`) pour se finir et obtenir un de score 1952.70 km, n'étant pas meilleur que celle obtenu initialement avec une population de 80.
 
 ### Clusters hiérarchiques - L'archipel des damnés (2 000 villes)
 

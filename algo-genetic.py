@@ -15,6 +15,8 @@ import requests
 BASE_URL = "https://tsp-sra0.onrender.com"
 STUDENT_ID = "steve_hanan"
 
+MAX_NO_IMPROVE =3000  # générations sans amélioration avant d'arrêter la boucle génétique
+
 # =============================================================================
 # API CLIENT
 # =============================================================================
@@ -342,7 +344,6 @@ def genetic_algorithm(cities, time_budget=60, pop_size=150, mutation_rate=0.02,
     generation = 0
     
     no_improve_count = 0
-    MAX_NO_IMPROVE = 500  # générations sans amélioration
 
     # --- Boucle génétique ---
     while time.time() - t_start < time_budget:
@@ -435,12 +436,18 @@ def run_instance(instance_id, time_budget=60, **ga_kwargs):
 if __name__ == "__main__":
     # Paramètres par instance (ajustés selon la taille et le temps disponible)
     instances_config = {
-        # "regions":     {"time_budget": 30,  "pop_size": 100},
+        "regions":     {"time_budget": 30,  "pop_size": 200},
         # "random_50":   {"time_budget": 60,  "pop_size": 150},
-        # "prefectures": {"time_budget": 120, "pop_size": 100},
-        #"random_100":  {"time_budget": 120, "pop_size": 100},
-        #"random_200":  {"time_budget": 180, "pop_size": 80},
-        "random_500":  {"time_budget": 300, "pop_size": 50},
+        # "prefectures": {"time_budget": 20, "pop_size": 200},
+        # "random_100":  {"time_budget": 120, "pop_size": 100},
+        # "random_200":  {"time_budget": 20, "pop_size": 80},
+        # "random_500":  {"time_budget": 300, "pop_size": 50},
+        # "hard_clusters":  {"time_budget": 300, "pop_size": 50},
+        # "hard_grid":  {"time_budget": 300, "pop_size": 50},
+        # "hard_circles":  {"time_budget": 300, "pop_size": 50},
+        # "hard_star":  {"time_budget": 300, "pop_size": 50},
+        # "hard_spiral":  {"time_budget": 300, "pop_size": 70},
+        # "hard_hierarchical":  {"time_budget": 180, "pop_size": 50},
     }
 
     # Lancement sur toutes les instances (commenter celles à ignorer)
