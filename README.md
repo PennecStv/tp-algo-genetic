@@ -9,9 +9,26 @@
 
 ## Compte-Rendu
 
+### Paramètrage globale par défaut
+
+* time_budget=60
+* pop_size=150
+* mutation_rate=0.15
+* elite_ratio=0.1
+* tournament_k=5
+
 ### Tiny - Tour de France des régions
 
+Score obtenu : 3235.49
 
+Avec le paramètrage suivant :
+
+* time_budget: 30
+* pop_size = 100
+
+En essayant de varier le taux d'exploitation et d'exploration en augmentant les valeurs de `time_budget` et `pop_size`, on retombe toujours sur le même score. On suppose que c'est la solution la plus optimale trouvable pour cette instance.
+
+Cette instance possédant un nombre très peu de ville. Il est facile de pour notre algorithme génétique pour trouver sa solution la plus optimale.
 
 ### Small - Livraison Express
 
