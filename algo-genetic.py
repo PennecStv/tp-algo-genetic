@@ -1,8 +1,3 @@
-"""
-TP Noté — Algorithmes Génétiques — TSP
-CPE Lyon 4IRC — Mars 2026
-"""
-
 import math
 import random
 import time
@@ -441,12 +436,12 @@ if __name__ == "__main__":
         # "prefectures": {"time_budget": 20, "pop_size": 200},
         # "random_100":  {"time_budget": 120, "pop_size": 100},
         # "random_200":  {"time_budget": 20, "pop_size": 80},
-        # "random_500":  {"time_budget": 300, "pop_size": 50},
-        # "hard_clusters":  {"time_budget": 300, "pop_size": 50},
-        # "hard_grid":  {"time_budget": 300, "pop_size": 50},
-        # "hard_circles":  {"time_budget": 300, "pop_size": 50},
-        # "hard_star":  {"time_budget": 300, "pop_size": 50},
-        # "hard_spiral":  {"time_budget": 300, "pop_size": 70},
+        # "random_500":  {"time_budget": 180, "pop_size": 50},
+        # "hard_clusters":  {"time_budget": 180, "pop_size": 50},
+        # "hard_grid":  {"time_budget": 180, "pop_size": 50},
+        # "hard_circles":  {"time_budget": 180, "pop_size": 50},
+        # "hard_star":  {"time_budget": 180, "pop_size": 50},
+        # "hard_spiral":  {"time_budget": 180, "pop_size": 70},
         # "hard_hierarchical":  {"time_budget": 180, "pop_size": 50},
     }
 
