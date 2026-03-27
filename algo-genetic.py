@@ -300,7 +300,7 @@ def or_opt_improve(tour, dist, seg_len=1):
 # ALGORITHME GÉNÉTIQUE PRINCIPAL
 # =============================================================================
 
-def genetic_algorithm(cities, time_budget=60, pop_size=150, mutation_rate=0.15,
+def genetic_algorithm(cities, time_budget=60, pop_size=150, mutation_rate=0.02,
                       elite_ratio=0.1, tournament_k=5):
     """
     Résout le TSP par algorithme génétique.
@@ -342,7 +342,7 @@ def genetic_algorithm(cities, time_budget=60, pop_size=150, mutation_rate=0.15,
     generation = 0
     
     no_improve_count = 0
-    MAX_NO_IMPROVE = 100  # générations sans amélioration
+    MAX_NO_IMPROVE = 500  # générations sans amélioration
 
     # --- Boucle génétique ---
     while time.time() - t_start < time_budget:
@@ -435,12 +435,12 @@ def run_instance(instance_id, time_budget=60, **ga_kwargs):
 if __name__ == "__main__":
     # Paramètres par instance (ajustés selon la taille et le temps disponible)
     instances_config = {
-        "regions":     {"time_budget": 30,  "pop_size": 100},
+        # "regions":     {"time_budget": 30,  "pop_size": 100},
         # "random_50":   {"time_budget": 60,  "pop_size": 150},
         # "prefectures": {"time_budget": 120, "pop_size": 100},
-        # "random_100":  {"time_budget": 120, "pop_size": 100},
-        # "random_200":  {"time_budget": 180, "pop_size": 80},
-        # "random_500":  {"time_budget": 300, "pop_size": 50},
+        #"random_100":  {"time_budget": 120, "pop_size": 100},
+        #"random_200":  {"time_budget": 180, "pop_size": 80},
+        "random_500":  {"time_budget": 300, "pop_size": 50},
     }
 
     # Lancement sur toutes les instances (commenter celles à ignorer)
